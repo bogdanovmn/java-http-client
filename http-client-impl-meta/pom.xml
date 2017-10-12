@@ -17,6 +17,7 @@
     <modules>
         <module>http-client-impl-simple</module>
         <module>http-client-impl-phantomjs</module>
+        <module>http-client-impl-selenium</module>
     </modules>
 
 
