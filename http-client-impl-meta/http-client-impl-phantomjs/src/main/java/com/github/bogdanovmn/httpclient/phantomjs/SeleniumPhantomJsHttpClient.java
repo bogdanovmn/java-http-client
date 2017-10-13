@@ -1,24 +1,25 @@
 package com.github.bogdanovmn.httpclient.phantomjs;
 
-import ch.racic.selenium.drivers.PhantomJSDriverHelper;
-import ch.racic.selenium.drivers.exceptions.ExecutableNotFoundException;
 import com.github.bogdanovmn.httpclient.core.HttpClient;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import java.io.File;
 import java.io.IOException;
 
-public class PhantomJsHttpClient implements HttpClient {
+public class SeleniumPhantomJsHttpClient implements HttpClient {
+	private final String WEB_DRIVER_PATH_PROPERTY_NAME = "http.webdriver.path";
+
 	private final String urlPrefix;
 	private PhantomJSDriver webDriver;
 	private final int pageLoadTime;
 
-	public PhantomJsHttpClient(String urlPrefix) {
+	public SeleniumPhantomJsHttpClient(String urlPrefix) {
 		this.urlPrefix = urlPrefix;
 		this.pageLoadTime = 100;
 	}
-	public PhantomJsHttpClient(String urlPrefix, int pageLoadTime) {
+	public SeleniumPhantomJsHttpClient(String urlPrefix, int pageLoadTime) {
 		this.urlPrefix = urlPrefix;
 		this.pageLoadTime = pageLoadTime;
 	}
@@ -44,17 +45,23 @@ public class PhantomJsHttpClient implements HttpClient {
 		if (this.webDriver == null) {
 			DesiredCapabilities caps = new DesiredCapabilities();
 
-			try {
-				PhantomJSDriverService service = new PhantomJSDriverService.Builder()
-					.usingPhantomJSExecutable(PhantomJSDriverHelper.executable())
-					.usingCommandLineArguments(new String[] {"--webdriver-loglevel=NONE"})
-					.withLogFile(null)
-					.build();
-				webDriver = new PhantomJSDriver(service, caps);
+			String driverFileName = System.getProperty(WEB_DRIVER_PATH_PROPERTY_NAME, "");
+			if (driverFileName.isEmpty()) {
+				throw new RuntimeException(
+					String.format("Expected '%s' property (path to phantomjs webdriver)", WEB_DRIVER_PATH_PROPERTY_NAME)
+				);
 			}
-			catch (ExecutableNotFoundException e) {
-				throw new IOException(e);
-			}
+
+			PhantomJSDriverService service = new PhantomJSDriverService.Builder()
+				.usingPhantomJSExecutable(new File(driverFileName))
+				.usingCommandLineArguments(new String[] {
+					"--webdriver-loglevel=WARN",
+					"--load-images=false"
+				})
+				.withLogFile(null)
+				.build();
+
+			webDriver = new PhantomJSDriver(service, caps);
 		}
 		return this.webDriver;
 	}

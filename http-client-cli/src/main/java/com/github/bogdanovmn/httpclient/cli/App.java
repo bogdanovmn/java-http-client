@@ -3,7 +3,7 @@ package com.github.bogdanovmn.httpclient.cli;
 
 import com.github.bogdanovmn.cmdlineapp.CmdLineAppBuilder;
 import com.github.bogdanovmn.httpclient.core.HttpClient;
-import com.github.bogdanovmn.httpclient.selenium.SeleniumHtmlUnitHttpClient;
+import com.github.bogdanovmn.httpclient.phantomjs.SeleniumPhantomJsHttpClient;
 import com.github.bogdanovmn.httpclient.simple.SimpleHttpClient;
 
 public class App {
@@ -17,7 +17,7 @@ public class App {
 				cmdLine -> {
 					try (
 						HttpClient httpClient = cmdLine.hasOption("w")
-							? new SeleniumHtmlUnitHttpClient("https://translate.google.ru/?ie=UTF-8#en/ru/", 5000)
+							? new SeleniumPhantomJsHttpClient("https://translate.google.ru/?ie=UTF-8#en/ru/", 200)
 							: new SimpleHttpClient("")
 					) {
 

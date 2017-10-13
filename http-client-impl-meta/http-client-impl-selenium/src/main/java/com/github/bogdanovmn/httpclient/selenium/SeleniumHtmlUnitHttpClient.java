@@ -3,7 +3,6 @@ package com.github.bogdanovmn.httpclient.selenium;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.github.bogdanovmn.httpclient.core.HttpClient;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 import java.io.IOException;

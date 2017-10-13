@@ -20,5 +20,11 @@
         <module>http-client-impl-selenium</module>
     </modules>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.github.bogdanovmn</groupId>
+            <artifactId>http-client-core</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>
