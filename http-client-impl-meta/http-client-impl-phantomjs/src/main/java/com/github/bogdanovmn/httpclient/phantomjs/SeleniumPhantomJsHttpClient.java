@@ -43,7 +43,6 @@ public class SeleniumPhantomJsHttpClient implements HttpClient {
 
 	private PhantomJSDriver getWebDriver() throws IOException {
 		if (this.webDriver == null) {
-			DesiredCapabilities caps = new DesiredCapabilities();
 
 			String driverFileName = System.getProperty(WEB_DRIVER_PATH_PROPERTY_NAME, "");
 			if (driverFileName.isEmpty()) {
@@ -51,17 +50,24 @@ public class SeleniumPhantomJsHttpClient implements HttpClient {
 					String.format("Expected '%s' property (path to phantomjs webdriver)", WEB_DRIVER_PATH_PROPERTY_NAME)
 				);
 			}
+			DesiredCapabilities caps = new DesiredCapabilities();
+			caps.setJavascriptEnabled(true);
+			caps.setCapability(
+				PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY,
+				driverFileName
+			);
 
-			PhantomJSDriverService service = new PhantomJSDriverService.Builder()
-				.usingPhantomJSExecutable(new File(driverFileName))
-				.usingCommandLineArguments(new String[] {
-					"--webdriver-loglevel=WARN",
-					"--load-images=false"
-				})
-				.withLogFile(null)
-				.build();
+//			PhantomJSDriverService service = new PhantomJSDriverService.Builder()
+//				.usingPhantomJSExecutable(new File(driverFileName))
+//				.usingCommandLineArguments(new String[] {
+//					"--webdriver-loglevel=WARN",
+//					"--load-images=false"
+//				})
+//				.withLogFile(null)
+//				.build();
 
-			webDriver = new PhantomJSDriver(service, caps);
+//			webDriver = new PhantomJSDriver(service, caps);
+			this.webDriver = new PhantomJSDriver(caps);
 		}
 		return this.webDriver;
 	}
