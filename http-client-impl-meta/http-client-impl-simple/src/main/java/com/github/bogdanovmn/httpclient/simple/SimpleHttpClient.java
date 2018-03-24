@@ -16,6 +16,7 @@ public class SimpleHttpClient implements HttpClient {
 	public String get(String url) throws IOException {
 		return Request.Get(urlPrefix + url)
 			.connectTimeout(10000)
+			.userAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36")
 			.execute()
 				.returnContent().asString();
 	}
