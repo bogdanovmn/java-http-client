@@ -38,9 +38,8 @@
 			<dependency>
 				<groupId>com.github.bogdanovmn.httpclient</groupId>
 				<artifactId>http-client-impl-simple</artifactId>
-				<version>1.0</version>
+				<version>1.2</version>
 			</dependency>
-
 
 			<!-- My Libs -->
 
@@ -51,7 +50,16 @@
 			</dependency>
 
 			<!-- Libs -->
-
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>fluent-hc</artifactId>
+				<version>4.5.3</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>2.5</version>
+			</dependency>
 			<dependency>
 				<groupId>org.seleniumhq.selenium</groupId>
 				<artifactId>selenium-java</artifactId>

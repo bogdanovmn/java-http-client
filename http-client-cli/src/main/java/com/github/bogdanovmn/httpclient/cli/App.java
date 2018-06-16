@@ -12,6 +12,7 @@ public class App {
 			.withJarName("http")
 			.withDescription("Http client CLI")
 			.withArg("url", "Souce URL")
+			.withFlag("last-modified", "Get last modified date")
 			.withFlag("webdriver", "Use web driver (phantomjs)")
 			.withEntryPoint(
 				cmdLine -> {
@@ -21,11 +22,20 @@ public class App {
 							: new SimpleHttpClient("")
 					) {
 
-						System.out.println(
-							httpClient.get(
-								cmdLine.getOptionValue("u")
-							)
-						);
+						if (cmdLine.hasOption("l")) {
+							System.out.println(
+								new SimpleHttpClient("").getLastModified(
+									cmdLine.getOptionValue("u")
+								)
+							);
+						}
+						else {
+							System.out.println(
+								httpClient.get(
+									cmdLine.getOptionValue("u")
+								)
+							);
+						}
 					}
 				}
 			).build().run();
