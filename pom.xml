@@ -6,7 +6,7 @@
 
 	<groupId>com.github.bogdanovmn.httpclient</groupId>
 	<artifactId>http-client-meta</artifactId>
-	<version>1.0</version>
+	<version>1.2</version>
 	<packaging>pom</packaging>
 
 	<modules>
