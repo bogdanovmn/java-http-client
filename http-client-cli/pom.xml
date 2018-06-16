@@ -7,11 +7,12 @@
     <parent>
         <groupId>com.github.bogdanovmn.httpclient</groupId>
         <artifactId>http-client-meta</artifactId>
-        <version>1.0</version>
-    </parent>
+		<version>dev</version>
+	</parent>
 
     <artifactId>http-client-cli</artifactId>
-    <version>1.0</version>
+	<version>${version.main}</version>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>

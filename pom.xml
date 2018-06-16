@@ -6,7 +6,7 @@
 
 	<groupId>com.github.bogdanovmn.httpclient</groupId>
 	<artifactId>http-client-meta</artifactId>
-	<version>1.2</version>
+	<version>dev</version>
 	<packaging>pom</packaging>
 
 	<modules>
@@ -18,27 +18,32 @@
 	<properties>
 		<encoding>UTF-8</encoding>
 		<java.version>1.8</java.version>
+		<version.main>1.5.1</version.main>
 	</properties>
 
 	<dependencyManagement>
 		<dependencies>
 
 			<!-- Modules -->
-
 			<dependency>
-				<groupId>com.github.bogdanovmn.httpclient</groupId>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>http-client-meta</artifactId>
+				<version>${version.main}</version>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
 				<artifactId>http-client-core</artifactId>
-				<version>1.0</version>
+				<version>${version.main}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.github.bogdanovmn.httpclient</groupId>
+				<groupId>${project.groupId}</groupId>
 				<artifactId>http-client-impl-phantomjs</artifactId>
-				<version>1.1</version>
+				<version>${version.main}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.github.bogdanovmn.httpclient</groupId>
+				<groupId>${project.groupId}</groupId>
 				<artifactId>http-client-impl-simple</artifactId>
-				<version>1.2</version>
+				<version>${version.main}</version>
 			</dependency>
 
 			<!-- My Libs -->
@@ -95,6 +100,22 @@
 					<testSource>${java.version}</testSource>
 					<testTarget>${java.version}</testTarget>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>flatten-maven-plugin</artifactId>
+				<!--<version>1.0.1</version>-->
+				<configuration>
+				</configuration>
+				<executions>
+					<execution>
+						<id>flatten</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>flatten</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
