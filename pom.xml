@@ -18,7 +18,7 @@
 	<properties>
 		<encoding>UTF-8</encoding>
 		<java.version>1.8</java.version>
-		<version.main>1.5.1</version.main>
+		<version.main>1.6</version.main>
 	</properties>
 
 	<dependencyManagement>
