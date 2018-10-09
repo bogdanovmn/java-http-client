@@ -19,12 +19,12 @@ public class App {
 					try (
 						HttpClient httpClient = cmdLine.hasOption("w")
 							? new SeleniumPhantomJsHttpClient("https://translate.google.ru/?ie=UTF-8#en/ru/", 200)
-							: new SimpleHttpClient("")
+							: new SimpleHttpClient()
 					) {
 
 						if (cmdLine.hasOption("l")) {
 							System.out.println(
-								new SimpleHttpClient("").getLastModified(
+								new SimpleHttpClient().getLastModified(
 									cmdLine.getOptionValue("u")
 								)
 							);
