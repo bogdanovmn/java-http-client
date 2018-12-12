@@ -18,7 +18,7 @@ public class App {
 				cmdLine -> {
 					try (
 						HttpClient httpClient = cmdLine.hasOption("w")
-							? new SeleniumPhantomJsHttpClient("https://translate.google.ru/?ie=UTF-8#en/ru/", 200)
+							? new SeleniumPhantomJsHttpClient(200)
 							: new SimpleHttpClient()
 					) {
 

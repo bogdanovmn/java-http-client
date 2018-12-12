@@ -11,25 +11,23 @@ import java.io.IOException;
 public class SeleniumPhantomJsHttpClient implements HttpClient {
 	private final String WEB_DRIVER_PATH_PROPERTY_NAME = "http.webdriver.path";
 
-	private final String urlPrefix;
 	private PhantomJSDriver webDriver;
-	private final int pageLoadTime;
+	private final int pageLoadTimeInMills;
 
-	public SeleniumPhantomJsHttpClient(String urlPrefix) {
-		this.urlPrefix = urlPrefix;
-		this.pageLoadTime = 100;
+	public SeleniumPhantomJsHttpClient(int pageLoadTimeInMills) {
+		this.pageLoadTimeInMills = pageLoadTimeInMills;
 	}
-	public SeleniumPhantomJsHttpClient(String urlPrefix, int pageLoadTime) {
-		this.urlPrefix = urlPrefix;
-		this.pageLoadTime = pageLoadTime;
+
+	public SeleniumPhantomJsHttpClient() {
+		this(100);
 	}
 
 	@Override
 	public String get(String url) throws IOException {
 		PhantomJSDriver browser = this.getWebDriver();
-		browser.get(this.urlPrefix + url);
+		browser.get(url);
 		try {
-			Thread.sleep(this.pageLoadTime);
+			Thread.sleep(this.pageLoadTimeInMills);
 		}
 		catch (InterruptedException e) {
 			e.printStackTrace();

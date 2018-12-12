@@ -39,7 +39,7 @@ public class SimpleHttpClient implements HttpClient {
 		);
 	}
 
-	static SimpleHttpClient withHttpProxy(String proxyHostPort) {
+	public static SimpleHttpClient withHttpProxy(String proxyHostPort) {
 		String[] components = proxyHostPort.split(":");
 		if (components.length != 2) {
 			throw new IllegalArgumentException("Wrong proxy format: " + proxyHostPort);

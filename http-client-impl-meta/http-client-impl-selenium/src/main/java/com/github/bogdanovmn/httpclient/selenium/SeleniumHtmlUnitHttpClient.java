@@ -8,7 +8,6 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import java.io.IOException;
 
 public class SeleniumHtmlUnitHttpClient implements HttpClient {
-	private final String urlPrefix;
 	private final HtmlUnitDriver browser = new HtmlUnitDriver(BrowserVersion.CHROME) {
 		@Override
 		protected WebClient newWebClient(BrowserVersion version) {
@@ -20,22 +19,20 @@ public class SeleniumHtmlUnitHttpClient implements HttpClient {
 			return webClient;
 		}
 	};
-	private final int pageLoadTime;
+	private final int pageLoadTimeInMills;
 
-	public SeleniumHtmlUnitHttpClient(String urlPrefix) {
-		this.urlPrefix = urlPrefix;
-		this.pageLoadTime = 100;
+	public SeleniumHtmlUnitHttpClient() {
+		this(100);
 	}
-	public SeleniumHtmlUnitHttpClient(String urlPrefix, int pageLoadTime) {
-		this.urlPrefix = urlPrefix;
-		this.pageLoadTime = pageLoadTime;
+	public SeleniumHtmlUnitHttpClient(int pageLoadTimeInMills) {
+		this.pageLoadTimeInMills = pageLoadTimeInMills;
 	}
 
 	@Override
 	public String get(String url) throws IOException {
-		browser.get(this.urlPrefix + url);
+		browser.get(url);
 		try {
-			Thread.sleep(this.pageLoadTime);
+			Thread.sleep(this.pageLoadTimeInMills);
 		}
 		catch (InterruptedException e) {
 			e.printStackTrace();

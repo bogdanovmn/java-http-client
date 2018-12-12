@@ -14,6 +14,10 @@
     <packaging>jar</packaging>
     <version>${version.main}</version>
 
+    <properties>
+        <maven.deploy.skip>false</maven.deploy.skip>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>

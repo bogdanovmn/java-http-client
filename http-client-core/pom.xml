@@ -14,5 +14,8 @@
     <packaging>jar</packaging>
     <version>${version.main}</version>
 
+    <properties>
+        <maven.deploy.skip>false</maven.deploy.skip>
+    </properties>
     
 </project>
