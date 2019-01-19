@@ -4,6 +4,8 @@ import com.github.bogdanovmn.httpclient.core.HttpClient;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.Header;
 import org.apache.http.HttpHost;
+import org.apache.http.client.config.CookieSpecs;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpHead;
@@ -35,6 +37,14 @@ public class SimpleHttpClient implements HttpClient {
 			HttpClients.custom()
 				.setConnectionTimeToLive(DEFAULT_TIMEOUT_SECONDS, TimeUnit.SECONDS)
 				.setUserAgent(DEFAULT_USER_AGENT)
+				.setDefaultRequestConfig(
+					RequestConfig.custom()
+						.setCookieSpec(CookieSpecs.STANDARD)
+						.setConnectionRequestTimeout(DEFAULT_TIMEOUT_SECONDS * 1000)
+						.setConnectTimeout(DEFAULT_TIMEOUT_SECONDS * 1000)
+						.setSocketTimeout(DEFAULT_TIMEOUT_SECONDS * 1000)
+						.build()
+				)
 			.build()
 		);
 	}
@@ -64,15 +74,14 @@ public class SimpleHttpClient implements HttpClient {
 
 	@Override
 	public String get(String url) throws IOException {
-		CloseableHttpResponse response = httpClient.execute(
-			new HttpGet(url)
-		);
-		return IOUtils.toString(
-			response.getEntity().getContent(),
-			response.getEntity().getContentEncoding() == null
-				? "UTF-8"
-				: response.getEntity().getContentEncoding().getValue()
-		);
+		try (CloseableHttpResponse response = httpClient.execute(new HttpGet(url))) {
+			return IOUtils.toString(
+				response.getEntity().getContent(),
+				response.getEntity().getContentEncoding() == null
+					? "UTF-8"
+					: response.getEntity().getContentEncoding().getValue()
+			);
+		}
 	}
 
 	public InputStream downloadFile(String url) throws IOException {

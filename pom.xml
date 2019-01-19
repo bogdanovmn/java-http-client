@@ -18,7 +18,7 @@
 	<properties>
 		<encoding>UTF-8</encoding>
 		<java.version>1.8</java.version>
-		<version.main>2.0.2</version.main>
+		<version.main>2.0.5</version.main>
 		<maven.deploy.skip>true</maven.deploy.skip>
 	</properties>
 
