@@ -6,11 +6,11 @@
 
     <parent>
         <groupId>com.github.bogdanovmn.httpclient</groupId>
-        <artifactId>http-client-impl-meta</artifactId>
+        <artifactId>http-client-meta</artifactId>
 		<version>dev</version>
     </parent>
 
-    <artifactId>http-client-impl-selenium</artifactId>
+    <artifactId>http-client-selenium</artifactId>
     <packaging>jar</packaging>
     <version>${version.main}</version>
 
@@ -19,6 +19,10 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.github.bogdanovmn.httpclient</groupId>
+            <artifactId>http-client-core</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>

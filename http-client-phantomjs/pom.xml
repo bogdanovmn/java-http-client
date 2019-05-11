@@ -7,24 +7,31 @@
     <parent>
         <groupId>com.github.bogdanovmn.httpclient</groupId>
         <artifactId>http-client-meta</artifactId>
-		<version>dev</version>
-	</parent>
+        <version>dev</version>
+    </parent>
 
-    <artifactId>http-client-impl-meta</artifactId>
+    <artifactId>http-client-phantomjs</artifactId>
+    <packaging>jar</packaging>
     <version>${version.main}</version>
-    <packaging>pom</packaging>
 
-    <modules>
-        <module>http-client-impl-simple</module>
-        <module>http-client-impl-phantomjs</module>
-        <module>http-client-impl-selenium</module>
-    </modules>
+    <properties>
+        <maven.deploy.skip>false</maven.deploy.skip>
+    </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.github.bogdanovmn.httpclient</groupId>
             <artifactId>http-client-core</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>phantomjsdriver</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>

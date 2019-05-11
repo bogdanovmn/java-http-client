@@ -11,14 +11,19 @@
 
 	<modules>
 		<module>http-client-core</module>
-		<module>http-client-impl-meta</module>
+		<module>http-client-simple</module>
+		<module>http-client-phantomjs</module>
+		<module>http-client-selenium</module>
 		<module>http-client-cli</module>
+		<module>http-client-translate</module>
+		<module>http-client-translate-google</module>
+		<module>http-client-translate-yandex</module>
 	</modules>
 
 	<properties>
 		<encoding>UTF-8</encoding>
 		<java.version>1.8</java.version>
-		<version.main>2.0.5</version.main>
+		<version.main>2.1.5</version.main>
 		<maven.deploy.skip>true</maven.deploy.skip>
 	</properties>
 
@@ -38,12 +43,17 @@
 			</dependency>
 			<dependency>
 				<groupId>${project.groupId}</groupId>
-				<artifactId>http-client-impl-phantomjs</artifactId>
+				<artifactId>http-client-phantomjs</artifactId>
 				<version>${version.main}</version>
 			</dependency>
 			<dependency>
 				<groupId>${project.groupId}</groupId>
-				<artifactId>http-client-impl-simple</artifactId>
+				<artifactId>http-client-simple</artifactId>
+				<version>${version.main}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.github.bogdanovmn.httpclient</groupId>
+				<artifactId>http-client-translate</artifactId>
 				<version>${version.main}</version>
 			</dependency>
 
@@ -75,6 +85,21 @@
 				<groupId>com.codeborne</groupId>
 				<artifactId>phantomjsdriver</artifactId>
 				<version>1.4.3</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jsoup</groupId>
+				<artifactId>jsoup</artifactId>
+				<version>1.10.3</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.collections</groupId>
+				<artifactId>google-collections</artifactId>
+				<version>1.0</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.code.gson</groupId>
+				<artifactId>gson</artifactId>
+				<version>2.8.1</version>
 			</dependency>
 
 		</dependencies>
