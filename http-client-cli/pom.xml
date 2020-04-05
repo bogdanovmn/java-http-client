@@ -7,8 +7,8 @@
     <parent>
         <groupId>com.github.bogdanovmn.httpclient</groupId>
         <artifactId>http-client-meta</artifactId>
-		<version>dev</version>
-	</parent>
+        <version>${version.main}</version>
+    </parent>
 
     <artifactId>http-client-cli</artifactId>
 	<version>${version.main}</version>
