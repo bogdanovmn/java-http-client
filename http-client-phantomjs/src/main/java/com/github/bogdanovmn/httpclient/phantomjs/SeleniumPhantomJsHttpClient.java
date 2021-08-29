@@ -9,7 +9,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class SeleniumPhantomJsHttpClient implements HttpClient {
-	private final String WEB_DRIVER_PATH_PROPERTY_NAME = "http.webdriver.path";
+	private final static String WEB_DRIVER_PATH_PROPERTY_NAME = "http.webdriver.path";
 
 	private PhantomJSDriver webDriver;
 	private final int pageLoadTimeInMills;

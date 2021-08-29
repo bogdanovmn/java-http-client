@@ -7,11 +7,11 @@
     <parent>
         <groupId>com.github.bogdanovmn.httpclient</groupId>
         <artifactId>http-client-meta</artifactId>
-        <version>${version.main}</version>
+        <version>${revision}</version>
     </parent>
 
     <artifactId>http-client-cli</artifactId>
-	<version>${version.main}</version>
+	<version>${revision}</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -20,15 +20,15 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.github.bogdanovmn.httpclient</groupId>
+            <groupId>com.github.bogdanovmn.httpclient.core</groupId>
             <artifactId>http-client-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.github.bogdanovmn.httpclient</groupId>
+            <groupId>com.github.bogdanovmn.httpclient.phantomjs</groupId>
             <artifactId>http-client-phantomjs</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.github.bogdanovmn.httpclient</groupId>
+            <groupId>com.github.bogdanovmn.httpclient.simple</groupId>
             <artifactId>http-client-simple</artifactId>
         </dependency>
 
@@ -64,6 +64,13 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <configuration>
+                    <skipStaging>true</skipStaging>
+                </configuration>
             </plugin>
         </plugins>
     </build>

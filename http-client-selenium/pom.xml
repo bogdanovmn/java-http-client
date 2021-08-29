@@ -7,16 +7,17 @@
     <parent>
         <groupId>com.github.bogdanovmn.httpclient</groupId>
         <artifactId>http-client-meta</artifactId>
-        <version>${version.main}</version>
+        <version>${revision}</version>
     </parent>
 
+    <groupId>com.github.bogdanovmn.httpclient.selenium</groupId>
     <artifactId>http-client-selenium</artifactId>
     <packaging>jar</packaging>
-    <version>${version.main}</version>
+    <version>${revision}</version>
 
     <name>HTTP client framework (Selenium)</name>
     <description>HTTP client framework</description>
-    <url>http://github.com/bogdanovmn/${git.id}</url>
+    <url>http://github.com/bogdanovmn/java-http-client</url>
 
     <licenses>
         <license>
@@ -36,14 +37,14 @@
     </developers>
 
     <scm>
-        <connection>scm:git:git://github.com/bogdanovmn/${git.id}.git</connection>
-        <developerConnection>scm:git:ssh://github.com:${git.id}.git</developerConnection>
-        <url>http://github.com/${git.id}</url>
+        <connection>scm:git:git://github.com/bogdanovmn/java-http-client.git</connection>
+        <developerConnection>scm:git:ssh://github.com:bogdanovmn/java-http-client.git</developerConnection>
+        <url>http://github.com/bogdanovmn/java-http-client</url>
     </scm>
 
     <dependencies>
         <dependency>
-            <groupId>com.github.bogdanovmn.httpclient</groupId>
+            <groupId>com.github.bogdanovmn.httpclient.core</groupId>
             <artifactId>http-client-core</artifactId>
         </dependency>
         <dependency>

@@ -11,7 +11,7 @@ public class App {
 		new CmdLineAppBuilder(args)
 			.withJarName("http")
 			.withDescription("Http client CLI")
-			.withArg("url", "Source URL")
+			.withRequiredArg("url", "Source URL")
 			.withFlag("last-modified", "Get last modified date")
 			.withFlag("webdriver", "Use web driver (phantomjs)")
 			.withEntryPoint(

@@ -6,12 +6,12 @@
 
 	<groupId>com.github.bogdanovmn.httpclient</groupId>
 	<artifactId>http-client-meta</artifactId>
-	<version>${version.main}</version>
+	<version>${revision}</version>
 	<packaging>pom</packaging>
 
 	<name>HTTP client framework</name>
 	<description>HTTP client framework</description>
-	<url>http://github.com/bogdanovmn/${git.id}</url>
+	<url>http://github.com/bogdanovmn/java-http-client</url>
 
 	<modules>
 		<module>http-client-core</module>
@@ -19,16 +19,12 @@
 		<module>http-client-phantomjs</module>
 		<module>http-client-selenium</module>
 		<module>http-client-cli</module>
-		<module>http-client-translate</module>
-		<module>http-client-translate-google</module>
-		<module>http-client-translate-yandex</module>
 	</modules>
 
 	<properties>
 		<encoding>UTF-8</encoding>
 		<java.version>1.8</java.version>
-		<version.main>2.1.6</version.main>
-		<git.id>bogdanovmn/java-common</git.id>
+		<revision>3.0.0</revision>
 	</properties>
 
 	<licenses>
@@ -49,9 +45,9 @@
 	</developers>
 
 	<scm>
-		<connection>scm:git:git://github.com/bogdanovmn/${git.id}.git</connection>
-		<developerConnection>scm:git:ssh://github.com:${git.id}.git</developerConnection>
-		<url>http://github.com/${git.id}</url>
+		<connection>scm:git:git://github.com/bogdanovmn/java-http-client.git</connection>
+		<developerConnection>scm:git:ssh://github.com:bogdanovmn/java-http-client.git</developerConnection>
+		<url>http://github.com/bogdanovmn/java-http-client</url>
 	</scm>
 
 	<dependencyManagement>
@@ -59,29 +55,24 @@
 
 			<!-- Modules -->
 			<dependency>
-				<groupId>${project.groupId}</groupId>
-				<artifactId>http-client-meta</artifactId>
-				<version>${version.main}</version>
-			</dependency>
-			<dependency>
-				<groupId>${project.groupId}</groupId>
+				<groupId>com.github.bogdanovmn.httpclient.core</groupId>
 				<artifactId>http-client-core</artifactId>
-				<version>${version.main}</version>
+				<version>${revision}</version>
 			</dependency>
 			<dependency>
-				<groupId>${project.groupId}</groupId>
+				<groupId>com.github.bogdanovmn.httpclient.phantomjs</groupId>
 				<artifactId>http-client-phantomjs</artifactId>
-				<version>${version.main}</version>
+				<version>${revision}</version>
 			</dependency>
 			<dependency>
-				<groupId>${project.groupId}</groupId>
+				<groupId>com.github.bogdanovmn.httpclient.simple</groupId>
 				<artifactId>http-client-simple</artifactId>
-				<version>${version.main}</version>
+				<version>${revision}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.github.bogdanovmn.httpclient</groupId>
-				<artifactId>http-client-translate</artifactId>
-				<version>${version.main}</version>
+				<groupId>com.github.bogdanovmn.httpclient.selenium</groupId>
+				<artifactId>http-client-selenium</artifactId>
+				<version>${revision}</version>
 			</dependency>
 
 			<!-- My Libs -->
@@ -113,22 +104,6 @@
 				<artifactId>phantomjsdriver</artifactId>
 				<version>1.4.3</version>
 			</dependency>
-			<dependency>
-				<groupId>org.jsoup</groupId>
-				<artifactId>jsoup</artifactId>
-				<version>1.10.3</version>
-			</dependency>
-			<dependency>
-				<groupId>com.google.collections</groupId>
-				<artifactId>google-collections</artifactId>
-				<version>1.0</version>
-			</dependency>
-			<dependency>
-				<groupId>com.google.code.gson</groupId>
-				<artifactId>gson</artifactId>
-				<version>2.8.1</version>
-			</dependency>
-
 		</dependencies>
 	</dependencyManagement>
 
@@ -136,21 +111,12 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.12</version>
+			<version>4.13.2</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
 	<build>
-		<resources>
-			<resource>
-				<directory>.</directory>
-				<includes>
-					<include>**/*pom.xml</include>
-				</includes>
-				<filtering>true</filtering>
-			</resource>
-		</resources>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -162,6 +128,29 @@
 					<testSource>${java.version}</testSource>
 					<testTarget>${java.version}</testTarget>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>flatten-maven-plugin</artifactId>
+				<version>1.0.1</version>
+				<configuration>
+				</configuration>
+				<executions>
+					<execution>
+						<id>flatten</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>flatten</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>flatten.clean</id>
+						<phase>clean</phase>
+						<goals>
+							<goal>clean</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
